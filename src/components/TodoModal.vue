@@ -62,9 +62,11 @@
 </template>
 
 <script>
+import { taskMixin } from "../mixin/todo";
 import { useProjectStore } from "../stores/todo";
 
 export default {
+    mixins:[taskMixin],
     props: {
         type: String,
         modalOpen: Boolean,
@@ -90,7 +92,7 @@ export default {
                 status: this?.status,
                 color: this?.color,
             };
-            this.projectStore.addTask(0, newTask); // Access projectStore using 'this'
+            this.addTask(0, newTask); // Access projectStore using 'this'
         },
     },
     setup() {

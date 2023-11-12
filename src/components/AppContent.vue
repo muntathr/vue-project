@@ -2,13 +2,14 @@
     <div v-if="!printing" class="content__wrapper">
         <div class="d-flex justify-content-between">
             <h1 class="titleHeader">My Task</h1>
-            <!-- <button type="button" class="btn btn-add-task" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-add-task" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Add Task
-            </button> -->
+            </button>
             <button v-if="data?.projects?.tasks_open" type="button" class="btn btn-add-task" @click="printPage">
                 Print
             </button>
         </div>
+        <p>{{ JSON.stringify(data?.projects?.tasks_open) }}</p>
         <h2 v-if="data?.projects?.tasks_open" class="font-weight-bold mt-4 mb-1">Open</h2>
         <div v-if="data?.projects?.tasks_open" class="row">
             <div v-for="todo in data?.projects?.tasks_open" :key="todo.id" class="col-12 col-md-6 col-lg-4 col-xl-3">
@@ -150,7 +151,7 @@
         <Print />
     </div>
 
-    <TodoModal />
+    <TodoModal :addTask="addTask" />
 </template>
 
 <script>
@@ -160,17 +161,19 @@ import TodoModal from './TodoModal.vue';
 import { useClickPhaseStore, useProjectStore } from '../stores/todo';
 import { watch } from 'vue';
 import Print from './Print.vue';
+import { taskMixin } from '../mixin/todo';
 
 export default {
+    mixins: [taskMixin],
     data() {
         return {
-            data: null,
             printing: false,
-        }
+            tasks: null,
+        };
     },
     components: {
         TodoModal,
-        Print
+        Print,
     },
     mounted() {
         this.initLottieAnimation();
@@ -211,17 +214,11 @@ export default {
         };
     },
     created() {
-        watch(this.projectStore, () => {
-            if (this.data == null) {
-                this.data = this.clickPhaseStore
-            }
-            else {
-                let newData = localStorage.getItem('data');
-                this.data = newData
-                console.log('newData', this.clickPhaseStore)
-            }
-            console.log('watch', this.clickPhaseStore)
-        })
-    },
+        const dataJson = localStorage.getItem('data');
+        watch(() => dataJson, () => {
+            console.log('newValue');
+            console.log('oldValue');
+        });
+    }
 };
 </script>

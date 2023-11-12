@@ -17,13 +17,18 @@ export const useProjectStore = defineStore({
         },
         addTask(phaseIndex, newTask) {
             console.log('new task', newTask)
-            if (this.projects[0]?.project?.phases[phaseIndex]?.tasks) {
-                this.projects[0].project.phases[phaseIndex].tasks.push(newTask);
+            if (this.projects[0]?.project?.phases[phaseIndex]?.tasks_open) {
+                this.projects[0].project.phases[phaseIndex].tasks_open.push(newTask);
                 localStorage.setItem('data', JSON.stringify(this.projects));
             } else {
                 console.error('Tasks array is not properly initialized for the phase');
             }
         },
+        getters: {
+            getProjects() {
+                return this.projects;
+            }
+        }
         // Other actions...
     },
 });
@@ -41,8 +46,26 @@ export const useClickPhaseStore = defineStore({
         },
     },
     getters: {
-        getProjects() {
+        getPhases() {
             return this.projects;
+        }
+    }
+});
+
+export const useUpdateStore = defineStore({
+    id: 'update',
+    state: () => ({
+        num: null,
+    }),
+    actions: {
+        clickUpdate(num) {
+            this.num = num;
+            console.log('update', num);
+        },
+    },
+    getters: {
+        getUpdate() {
+            return this.num;
         }
     }
 });

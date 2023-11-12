@@ -23,7 +23,7 @@
                 </span>
             </div>
             <div v-for="phase in project.project.phases" :key="phase.id"
-                @click="setSliderBarOpenPaese(phase.id) + clickPhase(phase)"
+                @click="setSliderBarOpenPaese(phase.id) + clickPhase({tasks_open: phase.tasks_open})"
                 :class="[sliderBarOpen === project.project.id ? 'btn-slidbar phese' : 'd-none', sliderBarOpenPaese === phase.id ? 'active' : '']">
                 <span class="d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
@@ -118,7 +118,7 @@ export default {
         const phaseStore = useClickPhaseStore();
         const phases = phaseStore.projects;
         const clickPhase = (data) => {
-            console.log(data)
+            console.log('click',JSON.stringify(data))
             phaseStore.clickPhase(data);
         }
         return {

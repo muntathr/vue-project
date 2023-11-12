@@ -2,6 +2,8 @@
 import AppHeader from './components/AppHeader.vue';
 import AppContent from './components/AppContent.vue';
 import 'bootstrap'
+
+
 </script>
 
 <template class="container">
