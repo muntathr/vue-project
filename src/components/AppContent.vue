@@ -2,14 +2,13 @@
     <div v-if="!printing" class="content__wrapper">
         <div class="d-flex justify-content-between">
             <h1 class="titleHeader">My Task</h1>
-            <button type="button" class="btn btn-add-task" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <!-- <button type="button" class="btn btn-add-task" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Add Task
-            </button>
+            </button> -->
             <button v-if="data?.projects?.tasks_open" type="button" class="btn btn-add-task" @click="printPage">
                 Print
             </button>
         </div>
-        <p>{{ JSON.stringify(data?.projects?.tasks_open) }}</p>
         <h2 v-if="data?.projects?.tasks_open" class="font-weight-bold mt-4 mb-1">Open</h2>
         <div v-if="data?.projects?.tasks_open" class="row">
             <div v-for="todo in data?.projects?.tasks_open" :key="todo.id" class="col-12 col-md-6 col-lg-4 col-xl-3">

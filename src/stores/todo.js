@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia';
 import jsonFile from '../assets/json/data.json'
+
+
 export const useProjectStore = defineStore({
     id: 'project',
     state: () => ({

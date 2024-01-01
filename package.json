@@ -17,6 +17,8 @@
     "vue-hot-toast": "^0.0.1-rc.4",
     "vue-icons": "^2.0.0",
     "vue-motion": "^0.2.3",
+    "vue-print-nb": "^1.7.5",
+    "vue-printer": "^0.0.4",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
